@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:52:11 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/09/30 12:06:16 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:19:43 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memchr(const void *s, int c, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+void	*ft_memset(void *b, int c, size_t len);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
