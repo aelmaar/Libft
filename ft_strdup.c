@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 19:19:10 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/01 16:26:07 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/10/01 17:04:21 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/01 17:15:08 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	unsigned char	*dst_cast;
-	unsigned char	*temp_buf;
-	size_t			i;
+	char	*s1_alloc;
+	size_t	len_size;
+	size_t	i;
 
-	dst_cast = dst;
+	len_size = ft_strlen(s1);
+	s1_alloc = malloc((len_size + 1) * sizeof(char));
+
+	if (!s1_alloc)
+		return (0);
 	i = 0;
-	temp_buf = (unsigned char []){"10"};
-	ft_memcpy(temp_buf, src, len);
-	i = 0;
-	while (i < len)
+	while (i < len_size)
 	{
-		dst_cast[i] = temp_buf[i];
+		s1_alloc[i] = s1[i];
 		i++;
 	}
-	return (dst);
+	s1_alloc[i] = '\0';
+	return (s1_alloc);
 }

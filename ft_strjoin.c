@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 19:19:10 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/01 16:26:07 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/10/01 20:02:12 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/01 20:14:56 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*dst_cast;
-	unsigned char	*temp_buf;
-	size_t			i;
+	char	*new_str;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
+	size_t	j;
 
-	dst_cast = dst;
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	new_str = malloc((s1_len + s2_len + 1) * sizeof(char));
+	if (!new_str)
+		return (0);
 	i = 0;
-	temp_buf = (unsigned char []){"10"};
-	ft_memcpy(temp_buf, src, len);
-	i = 0;
-	while (i < len)
+	j = 0;
+	while (i < s1_len)
 	{
-		dst_cast[i] = temp_buf[i];
-		i++;
+		new_str[i++] = s1[i];
+		j++;
 	}
-	return (dst);
+	i = 0;
+	while (i < s2_len)
+	{
+		new_str[j++] = s2[i++];
+	}
+	return (new_str);
 }

@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:32:14 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/09/29 18:11:52 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:50:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	unsigned char	*s1_cast;
+	unsigned char	*s2_cast;
+	size_t			i;
 
 	i = 0;
-	while (s1[i] && (s1[i] == s2[i]) && i < n)
+	s1_cast = (unsigned char *)s1;
+	s2_cast = (unsigned char *)s2;
+	while ((s1_cast[i] || s2_cast[i]) && i < n)
 	{
+		if (s1_cast[i] != s2_cast[i])
+			return (s1_cast[i] - s2_cast[i]);
 		i++;
 	}
-	return (s1[i] - s2[i]);
+	return (0);
 }
