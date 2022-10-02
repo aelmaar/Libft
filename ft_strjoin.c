@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:02:12 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/01 20:14:56 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/02 10:02:58 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	while (i < s1_len)
 	{
-		new_str[i++] = s1[i];
+		new_str[i] = s1[i];
+		i++;
 		j++;
 	}
 	i = 0;
@@ -38,5 +39,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	{
 		new_str[j++] = s2[i++];
 	}
+	new_str[j] = '\0';
 	return (new_str);
 }

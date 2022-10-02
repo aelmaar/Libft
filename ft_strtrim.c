@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 19:19:10 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/02 19:02:27 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/10/02 19:26:57 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/02 20:44:35 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	if (dst > src)
+	size_t	start;
+	size_t	end;
+	size_t	i;
+	char	*str_trim;
+
+	start = 0;
+	i = 0;
+	end = ft_strlen(s1);
+	while (ft_strchr(s1, set[start]))
+		start++;
+	while (ft_strrchr(s1 + end, set[i]))
 	{
-		while (len > 0)
-		{
-			((unsigned char *)dst)[len - 1] = ((unsigned char *)src)[len - 1];
-			len--;
-		}
+		end--;
+		i++;
 	}
-	else
-		ft_memcpy(dst, src, len);
-	return (dst);
+	str_trim = ft_substr(s1, start, end - start);
+	return (str_trim);
 }
