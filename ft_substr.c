@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:17:51 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/03 15:38:46 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:28:05 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	len_s = ft_strlen(s);
-	if (ft_strlen(s) > len)
+	if (len_s > len)
 		sub_str = malloc((len + 1) * sizeof(char));
 	else
-		sub_str = malloc((ft_strlen(s) + 1) * sizeof(char));
+		sub_str = malloc((len_s + 1) * sizeof(char));
 	if (!sub_str)
 		return (0);
 	i = 0;
