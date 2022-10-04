@@ -6,12 +6,12 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:05:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/03 20:25:45 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:24:34 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 static int	check_delimiter(char s, char c)
 {
 	if (s == c)
@@ -26,11 +26,11 @@ static size_t	calc_size_strs(char *s, char c)
 	len = 0;
 	while (*s)
 	{
-		while (*s && !check_delimiter(*s, c))
-			s++;
-		if (*s && check_delimiter(*s, c))
-			len++;
 		while (*s && check_delimiter(*s, c))
+			s++;
+		if (*s && !check_delimiter(*s, c))
+			len++;
+		while (*s && !check_delimiter(*s, c))
 			s++;
 	}
 	return (len);
@@ -74,16 +74,16 @@ char	**ft_split(char const *s, char c)
 		while (*s)
 		{
 			j = 0;
-			while (s[j] && !check_delimiter(s[j], c))
-				j++;
-			if (s[j] && check_delimiter(s[j], c))
+			while (*s && check_delimiter(*s, c))
+				s++;
+			if (*s && !check_delimiter(*s, c))
 			{
 				strs[i++] = alloc_word((char *)s, c);
 			}
-			while (s[j] && check_delimiter(s[j], c))
-				j++;
-			s += j;
+			while (*s && !check_delimiter(*s, c))
+				s++;
 		}
+		strs[i] = 0;
 	}
 	return (strs);
 }
