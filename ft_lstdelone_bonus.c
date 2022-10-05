@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 20:08:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/04 20:10:24 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:54:08 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	del(lst->content);
+	if (lst && del)
+    {
+        del(lst->content);
+        free(lst);
+    }
 }
