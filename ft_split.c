@@ -6,12 +6,12 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:05:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/04 11:24:34 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:55:46 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
 static int	check_delimiter(char s, char c)
 {
 	if (s == c)
@@ -64,7 +64,6 @@ char	**ft_split(char const *s, char c)
 	char	**strs;
 	size_t	size_strs;
 	size_t	i;
-	size_t	j;
 
 	size_strs = calc_size_strs((char *)s, c);
 	strs = (char **)ft_calloc(size_strs + 1, sizeof(char *));
@@ -73,7 +72,6 @@ char	**ft_split(char const *s, char c)
 	{
 		while (*s)
 		{
-			j = 0;
 			while (*s && check_delimiter(*s, c))
 				s++;
 			if (*s && !check_delimiter(*s, c))
