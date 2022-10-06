@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 11:36:25 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/05 19:02:30 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/10/05 13:17:05 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/06 12:18:36 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int	ft_atoi(const char *str)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	long	nb;
-	long	sign;
+	t_list	*head;
+	t_list	*new_node;
 
-	sign = 1;
-	nb = 0;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str++;
-	if (*str == '-')
+	if (!lst && !f && !del)
+		return (0);
+	head = ft_lstnew(f(lst->content));
+	lst = lst->next;
+	while (lst)
 	{
-		sign *= (-1);
-		str++;
+		new_node = ft_lstnew(f(lst->content));
+		if (!new_node)
+		{
+			ft_lstclear(&head, del);
+			return (0);
+		}
+		ft_lstadd_back(&head, new_node);
+		lst = lst->next;
 	}
-	else if (*str == '+')
-		str++;
-	while (*str >= 48 && *str <= 57)
-	{
-		nb = (nb * 10) + (*str - 48);
-		str++;
-	}
-	return (nb * sign);
+	return (head);
 }
