@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:17:08 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/01 15:06:43 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:31:49 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	src_len;
 	size_t	i;
 
+	if (!dst && dstsize == 0)
+		return (0);
 	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
 	if (dstsize == 0 || dst_len >= dstsize)
