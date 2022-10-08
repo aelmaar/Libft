@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:55:54 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/05 12:07:22 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:03:30 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (*lst && del)
+	if (!lst || !del)
+		return ;
+	while (*lst)
 	{
-		while (*lst)
-		{
-			ft_lstdelone(*lst, del);
-			*lst = (*lst)->next;
-		}
-		*lst = 0;
+		ft_lstdelone(*lst, del);
+		*lst = (*lst)->next;
 	}
+	*lst = 0;
 }

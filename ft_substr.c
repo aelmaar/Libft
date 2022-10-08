@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:17:51 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/04 17:28:05 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:27:57 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	len_s;
 	size_t	i;
 
+	if (!s)
+		return (0);
 	len_s = ft_strlen(s);
 	if (len_s > len)
 		sub_str = malloc((len + 1) * sizeof(char));

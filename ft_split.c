@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:05:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/05 19:55:46 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:51:16 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	**ft_split(char const *s, char c)
 	size_t	size_strs;
 	size_t	i;
 
+	if (!s)
+		return (0);
 	size_strs = calc_size_strs((char *)s, c);
 	strs = (char **)ft_calloc(size_strs + 1, sizeof(char *));
 	i = 0;

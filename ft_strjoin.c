@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:02:12 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/02 10:02:58 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:45:21 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,19 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*new_str;
-	size_t	s1_len;
-	size_t	s2_len;
 	size_t	i;
-	size_t	j;
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	new_str = malloc((s1_len + s2_len + 1) * sizeof(char));
-	if (!new_str)
+	if (!s1)
 		return (0);
-	i = 0;
-	j = 0;
-	while (i < s1_len)
+	new_str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (new_str)
 	{
-		new_str[i] = s1[i];
-		i++;
-		j++;
+		i = 0;
+		while (*s1)
+			new_str[i++] = *(s1++);
+		while (*s2)
+			new_str[i++] = *(s2++);
+		new_str[i] = '\0';
 	}
-	i = 0;
-	while (i < s2_len)
-	{
-		new_str[j++] = s2[i++];
-	}
-	new_str[j] = '\0';
 	return (new_str);
 }
