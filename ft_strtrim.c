@@ -6,25 +6,22 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:26:57 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/08 15:47:56 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/08 19:54:22 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	start;
-	size_t	end;
-	size_t	i;
+	int		start;
+	int		end;
 	char	*str_trim;
 
 	if (!s1)
 		return (0);
 	start = 0;
-	i = 0;
 	end = ft_strlen(s1);
 	while (ft_strchr(set, s1[start]))
 		start++;
