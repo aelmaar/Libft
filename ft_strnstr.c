@@ -6,28 +6,26 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:52:25 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/09/30 18:36:27 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/08 12:37:32 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+static char	*search_str(char *haystack, char *needle, size_t len)
 {
-	size_t	i;
-	size_t	j;
 	size_t	check_str;
 	size_t	needle_len;
+	size_t	i;
+	size_t	j;
 
-	if (needle[0] == '\0')
-		return ((char *)haystack);
 	i = 0;
 	needle_len = ft_strlen(needle);
 	while (*haystack && i < len)
 	{
-		check_str = 0;
 		j = i;
+		check_str = 0;
 		while (haystack[check_str]
 			&& haystack[check_str] == needle[check_str] && j < len)
 		{
@@ -40,4 +38,18 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		haystack++;
 	}
 	return (0);
+}
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	char	*check_str;
+
+	if (!haystack && len == 0)
+		return (0);
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	i = 0;
+	check_str = search_str((char *)haystack, (char *)needle, len);
+	return (check_str);
 }
