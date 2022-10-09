@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:04:21 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/01 17:15:08 by ael-maar         ###   ########.fr       */
+/*   Updated: 2022/10/08 18:47:21 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	*ft_strdup(const char *s1)
 
 	len_size = ft_strlen(s1);
 	s1_alloc = malloc((len_size + 1) * sizeof(char));
-
 	if (!s1_alloc)
 		return (0);
 	i = 0;
