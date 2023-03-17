@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:05:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/08 15:51:16 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:26:41 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static size_t	calc_size_strs(char *s, char c)
 	return (len);
 }
 
-static char	*alloc_word(char *s, char delimiter)
+static char	*ft_word(char *s, char delimiter)
 {
 	char	*word;
 	size_t	len;
@@ -45,7 +45,7 @@ static char	*alloc_word(char *s, char delimiter)
 	len = 0;
 	while (s[len] && !check_delimiter(s[len], delimiter))
 		len++;
-	word = ft_calloc(len + 1, sizeof(char));
+	word = malloc((len + 1) * sizeof(char));
 	i = 0;
 	if (word)
 	{
@@ -59,6 +59,34 @@ static char	*alloc_word(char *s, char delimiter)
 	return (word);
 }
 
+char	**fill_str(char *s, char **strs, char c)
+{
+	int	i;
+
+	i = 0;
+	while (*s)
+	{
+		while (*s && check_delimiter(*s, c))
+			s++;
+		if (*s && !check_delimiter(*s, c))
+		{
+			strs[i] = ft_word((char *)s, c);
+			if (strs[i] == NULL)
+			{
+				while ((i - 1) >= 0)
+					free(strs[(i--) - 1]);
+				free(strs);
+				return (NULL);
+			}
+			i++;
+		}
+		while (*s && !check_delimiter(*s, c))
+			s++;
+	}
+	strs[i] = NULL;
+	return (strs);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
@@ -68,22 +96,9 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (0);
 	size_strs = calc_size_strs((char *)s, c);
-	strs = (char **)ft_calloc(size_strs + 1, sizeof(char *));
+	strs = (char **)malloc((size_strs + 1) * sizeof(char *));
 	i = 0;
 	if (strs)
-	{
-		while (*s)
-		{
-			while (*s && check_delimiter(*s, c))
-				s++;
-			if (*s && !check_delimiter(*s, c))
-			{
-				strs[i++] = alloc_word((char *)s, c);
-			}
-			while (*s && !check_delimiter(*s, c))
-				s++;
-		}
-		strs[i] = 0;
-	}
+		strs = fill_str((char *)s, strs, c);
 	return (strs);
 }

@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:17:05 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/09 16:35:43 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:59:33 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*head;
 	t_list	*new_node;
+	void	*content;
 
-	if (!lst || !f)
-		return (0);
-	head = ft_lstnew(f(lst->content));
-	lst = lst->next;
+	if (!lst || !f || !del)
+		return (NULL);
+	head = NULL;
 	while (lst)
 	{
-		new_node = ft_lstnew(f(lst->content));
-		if (!new_node)
+		content = f(lst->content);
+		new_node = ft_lstnew(content);
+		if (new_node == NULL)
 		{
+			free(content);
 			ft_lstclear(&head, del);
 			return (0);
 		}

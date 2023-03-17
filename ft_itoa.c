@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 11:28:16 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/04 13:02:35 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:28:16 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ char	*ft_itoa(int n)
 	short	size;
 
 	size = calc_size_int(n);
-	res = ft_calloc(size + 1, sizeof(char));
+	res = malloc((size + 1) * sizeof(char));
 	nb = n;
-	if (n == 0)
-		res[0] = 48;
 	if (res)
 	{
+		if (nb == 0)
+			res[0] = 48;
 		res[size--] = '\0';
 		if (nb < 0)
 		{

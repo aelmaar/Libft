@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:01:47 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/07 15:41:18 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:51:41 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	new = ft_calloc(1, sizeof(t_list));
+	new = malloc(sizeof(t_list));
 	if (new)
 	{
 		new->content = content;
-		new->next = 0;
+		new->next = NULL;
 	}
 	return (new);
 }

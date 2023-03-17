@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:17:51 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/08 14:27:57 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:18:12 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (0);
 	len_s = ft_strlen(s);
-	if (len_s > len)
+	if (start >= len_s || len == 0)
+		return (ft_strdup(""));
+	else if (len_s > len && ft_strlen(&s[start]) >= len)
 		sub_str = malloc((len + 1) * sizeof(char));
 	else
-		sub_str = malloc((len_s + 1) * sizeof(char));
+		sub_str = malloc((ft_strlen(&s[start]) + 1) * sizeof(char));
 	if (!sub_str)
 		return (0);
 	i = 0;
-	if (len_s >= start)
+	while (s[start] && i < len)
 	{
-		while (s[start] && i < len)
-		{
-			sub_str[i] = s[start];
-			i++;
-			start++;
-		}
+		sub_str[i] = s[start];
+		i++;
+		start++;
 	}
 	sub_str[i] = '\0';
 	return (sub_str);
