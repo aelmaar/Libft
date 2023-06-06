@@ -91,13 +91,11 @@ char	**ft_split(char const *s, char c)
 {
 	char	**strs;
 	size_t	size_strs;
-	size_t	i;
 
 	if (!s)
 		return (0);
 	size_strs = calc_size_strs((char *)s, c);
 	strs = (char **)malloc((size_strs + 1) * sizeof(char *));
-	i = 0;
 	if (strs)
 		strs = fill_str((char *)s, strs, c);
 	return (strs);
