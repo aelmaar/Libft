@@ -32,20 +32,23 @@ NAME = libft.a
 HEADER = libft.h
 
 $(NAME): $(SRCS)
-	$(AR) $@ $?
+	@$(AR) $@ $?
+
+%.o : %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: all tolibft
 
 tolibft: $(BSRCS)
-	$(AR) $(NAME) $?
+	@$(AR) $(NAME) $?
 
 all: $(NAME)
 
 clean:
-	$(RM) *.o
+	@$(RM) $(SRCS) $(BSRCS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
